@@ -105,12 +105,12 @@ public class ELS {
 
 
             byte[] CardData = this.ExecuteCommand(ELS.READ_ELS);
-            List<String> res = new ArrayList<String>();
+            List<String> res = new ArrayList<String>(); //List of fields
             List<Byte> buffer = new ArrayList<Byte>(); //Buffer
 
             for (int i = 0; i < CardData.length - 1; i++) {
                 int code = (int) CardData[i];
-                if ((code == (int) 0x0C) || (code == (int) 0x13) || (code == (int) 0x18)) {
+                if ((code == (int) 0x0C) || (code == (int) 0x13) || (code == (int) 0x18)) { //Field separators
                     byte[] temp = new byte[buffer.size()];
                     for (int j = 0; j < buffer.size(); j++) {
                         temp[j] = buffer.get(j).byteValue();
@@ -138,12 +138,16 @@ public class ELS {
             }
 
 
+            this.Channel.close();
+            this.StudentCard.disconnect(true);
+
+            return sf;
 
         } catch (Exception e) {
-            System.err.println(e.toString());
+            return null;
         }
 
-        return sf;
+
     }
 
 
