@@ -25,5 +25,26 @@ namespace eObecnosc_App
         {
             InitializeComponent();
         }
+
+        private void Przycisk_Wyswietl_Click(object sender, RoutedEventArgs e)
+        {
+            Panel.Children.Clear();
+
+            Panel.Children.Add(UC_Obecnosc.Instancja);
+        }
+
+        private void Przycisk_Dodaj_Click(object sender, RoutedEventArgs e)
+        {
+            Panel.Children.Clear();
+
+            Panel.Children.Add(UC_Dodaj.Instancja);
+        }
+
+        private void Przycisk_Edytuj_Click(object sender, RoutedEventArgs e)
+        {
+            Panel.Children.Clear();
+
+            Panel.Children.Add(UC_Edytuj.Instancja);
+        }
     }
 }

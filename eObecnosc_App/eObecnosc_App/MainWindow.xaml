@@ -3,9 +3,13 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                       Title="MainWindow"
-                      Height="350"
-                      Width="525">
+                      Height="720"
+                      Width="1280">
     <Grid>
+        <StackPanel x:Name="Panel" HorizontalAlignment="Left" Height="640" Margin="0,50,-0.4,0" VerticalAlignment="Top" Width="1274"/>
+        <Button x:Name="Przycisk_Wyswietl" Content="Obecność" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="50" Click="Przycisk_Wyswietl_Click"/>
+        <Button x:Name="Przycisk_Dodaj" Content="Dodaj Zajęcia" HorizontalAlignment="Left" Margin="125,0,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="Przycisk_Dodaj_Click"/>
+        <Button x:Name="Przycisk_Edytuj" Content="Edytuj Zajęcia" HorizontalAlignment="Left" Margin="250,0,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="Przycisk_Edytuj_Click"/>
 
     </Grid>
 </Controls:MetroWindow>
