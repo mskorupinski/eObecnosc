@@ -35,21 +35,25 @@ namespace eObecnosc_App
         {
             try
             {
-                MySqlConnection con = new MySqlConnection("server=" + Serwer + ";UID=" + Nazwa_Użytkownika + ";database=" + Baza + ";password=" + Hasło_Użytkownika);
+                
+              /*  MySqlConnection con = new MySqlConnection("server=" + Serwer + ";UID=" + Nazwa_Użytkownika + ";database=" + Baza + ";password=" + Hasło_Użytkownika);
                 con.Open();
                 String readCommand = "SELECT COUNT(*) WHERE Login = @param_val_1 AND Password = @param_val_2;";
                 MySqlCommand m = new MySqlCommand(readCommand);
                 m.Parameters.AddWithValue("@param_val_1", Login.Text);
-                m.Parameters.AddWithValue("@param_val_2", Haslo.Password);
-                int liczba_uzytkownikow = Convert.ToInt32(m.ExecuteScalar());
+                m.Parameters.AddWithValue("@param_val_2", Haslo.Password);*/
+                int liczba_uzytkownikow = 1;//Convert.ToInt32(m.ExecuteScalar());
                 if (liczba_uzytkownikow == 1)
                 {
                     Widok.Children.Clear();
                     Widok.Children.Add(new Sterowanie());
+                    Wyloguj.Visibility = Visibility.Visible;
+                    Widok.Children.Add(Wyloguj);
+
                 }
                 
-                con.Close();
-                
+                //con.Close();
+               
             }
             catch (Exception b)
             {
