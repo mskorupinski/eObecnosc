@@ -1,7 +1,5 @@
 package pl.techdra.eobecnosc;
 
-import java.util.StringJoiner;
-
 /**
  * Created by Kuba on 29.03.2017.
  */

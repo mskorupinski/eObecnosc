@@ -11,6 +11,10 @@
         <PasswordBox x:Name="Haslo" HorizontalAlignment="Left" Margin="404,369,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="Przycisk_Zaloguj" Content="Zaloguj się" HorizontalAlignment="Left" Margin="404,450,0,0" VerticalAlignment="Top" Width="75" Click="Przycisk_Zaloguj_Click"/>
         <TextBox x:Name="Login" HorizontalAlignment="Left" Height="23" Margin="404,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Wyloguj" HorizontalAlignment="Left" Margin="1153,25,0,0" VerticalAlignment="Top" Width="50" Height="50" Visibility="Hidden">
+            <Image Height="31" Width="40" Source="Ikonki/Wyloguj.png"/>
+
+        </Button>
 
     </Grid>
 
