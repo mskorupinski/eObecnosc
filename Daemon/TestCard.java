@@ -1,6 +1,7 @@
 /**
  * Created by Kuba on 29.03.2017.
  */
+
 import pl.techdra.eobecnosc.*;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.event.*;
 public class TestCard {
     public static void main(String[] args) {
         try {
+            JOptionPane.showMessageDialog(null, Broadcast.GetBroadcast());
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
         } catch (UnsupportedLookAndFeelException ex) {
