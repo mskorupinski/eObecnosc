@@ -1,44 +1,16 @@
-/**
- * Created by Kuba on 29.03.2017.
- */
-
-import pl.techdra.eobecnosc.*;
+package pl.techdra.eobecnosc.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
-import java.awt.event.*;
 
-public class TestCard {
-    public static void main(String[] args) {
-        try {
-            JOptionPane.showMessageDialog(null, Broadcast.GetBroadcast());
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
-
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-
-        ELS card = new ELS();
-        StudentFile sf = card.ReadData();
-
-        JOptionPane.showMessageDialog(null, sf);
-    }
-
-    private static void createAndShowGUI() {
+/**
+ * Created by Kuba on 26.04.2017.
+ */
+public class TrayModeView {
+    public static void createAndShowGUI() {
         //Check the SystemTray support
         if (!SystemTray.isSupported()) {
             System.out.println("SystemTray is not supported");
@@ -81,7 +53,7 @@ public class TestCard {
 
     //Obtain the image URL
     protected static Image createImage(String path, String description) {
-        URL imageURL = TestCard.class.getResource(path);
+        URL imageURL = TrayModeView.class.getResource(path);
 
         if (imageURL == null) {
             System.err.println("Resource not found: " + path);
