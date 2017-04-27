@@ -6,11 +6,11 @@
                       Height="720"
                       Width="1280">
     <Grid x:Name="Widok">
-        <Label x:Name="Etykieta_Logowanie" Content="Login:" HorizontalAlignment="Left" Margin="404,158,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Etykieta_Haslo" Content="Hasło:" HorizontalAlignment="Left" Margin="404,304,0,0" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="Haslo" HorizontalAlignment="Left" Margin="404,369,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="Przycisk_Zaloguj" Content="Zaloguj się" HorizontalAlignment="Left" Margin="404,450,0,0" VerticalAlignment="Top" Width="75" Click="Przycisk_Zaloguj_Click"/>
-        <TextBox x:Name="Login" HorizontalAlignment="Left" Height="23" Margin="404,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Etykieta_Logowanie" Content="Login:" HorizontalAlignment="Left" Margin="404,177,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Etykieta_Haslo" Content="Hasło:" HorizontalAlignment="Left" Margin="404,279,0,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="Haslo" HorizontalAlignment="Left" Margin="404,329,0,0" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.499,-0.981"/>
+        <Button x:Name="Przycisk_Zaloguj" Content="Zaloguj się" HorizontalAlignment="Left" Margin="575,452,0,0" VerticalAlignment="Top" Width="75" Click="Przycisk_Zaloguj_Click"/>
+        <TextBox x:Name="Login" HorizontalAlignment="Left" Height="23" Margin="404,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246"/>
         <Button x:Name="Wyloguj" HorizontalAlignment="Left" Margin="1153,25,0,0" VerticalAlignment="Top" Width="50" Height="50" Visibility="Hidden">
             <Image Height="31" Width="40" Source="Ikonki/Wyloguj.png"/>
 

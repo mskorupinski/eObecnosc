@@ -13,5 +13,6 @@
         <Label x:Name="Etykieta_Wybierz_grupe_dodaj" Content="Wybierz grupę:" HorizontalAlignment="Left" Margin="83,166,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Margin="83,217,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="Przycisk_Sprawdz" Content="Sprawdź obecność" HorizontalAlignment="Left" Margin="83,312,0,0" VerticalAlignment="Top" Width="120" IsCancel="True" Click="Przycisk_Sprawdz_Click"/>
+        <TextBox x:Name="tescik" HorizontalAlignment="Left" Height="288" Margin="226,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </UserControl>

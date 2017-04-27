@@ -39,13 +39,13 @@ namespace eObecnosc_App
         {
             try
             {
-                
+                /*
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
                 String readCommand = "SELECT COUNT(*) FROM Uzytkownicy";
                 MySqlCommand m = new MySqlCommand(readCommand, con);
 
-                MessageBox.Show(Convert.ToString(m.ExecuteScalar()));
+                MessageBox.Show(Convert.ToString(m.ExecuteScalar()));*/
                 /*
                 String readCommand = "SELECT COUNT(*) WHERE Login = @param_val_1 AND Password = @param_val_2;";
                 MySqlCommand m = new MySqlCommand(readCommand, con);
@@ -53,10 +53,10 @@ namespace eObecnosc_App
                 m.Parameters.AddWithValue("@param_val_2", Haslo.Password);
                 int liczba_uzytkownikow = Convert.ToInt32(m.ExecuteScalar());
                 if (liczba_uzytkownikow == 1)
-                {
+                {*/
                     Widok.Children.Clear();
                     Widok.Children.Add(new Sterowanie());
-                }
+               /* }
                 
                 con.Close();
                 */
