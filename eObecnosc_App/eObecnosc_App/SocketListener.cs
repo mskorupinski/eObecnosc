@@ -10,7 +10,7 @@ namespace eObecnosc_App
     public static class SocketListener
     {
 
-        // Incoming data from the client.
+       
         private static string data = null;
 
         public static string Data
@@ -28,78 +28,17 @@ namespace eObecnosc_App
 
         public static void StartListening()
         {
+            Console.WriteLine(IPAddress.Broadcast.ToString());
+            UdpClient udpClient = new UdpClient(8080);
 
-            byte[] bytes = new Byte[1024];
-
-            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
-
-            Socket listener = new Socket(AddressFamily.InterNetwork,
-                SocketType.Stream, ProtocolType.Tcp);
-
-
-            try
+            while (true)
             {
-                listener.Bind(localEndPoint);
-                listener.Listen(10);
 
-                String strHostName = string.Empty;
-
-                strHostName = Dns.GetHostName();
-
-                //Broadcast aktywnych interfejsów
-                NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
-                foreach (NetworkInterface Interface in Interfaces)
-                {
-                    if (Interface.NetworkInterfaceType == NetworkInterfaceType.Loopback) continue;
-                    if (Interface.OperationalStatus != OperationalStatus.Up) continue;
-                    Console.WriteLine(Interface.Description);
-                    UnicastIPAddressInformationCollection UnicastIPInfoCol = Interface.GetIPProperties().UnicastAddresses;
-                    foreach (UnicastIPAddressInformation UnicatIPInfo in UnicastIPInfoCol)
-                    {
-
-                        IPAddress adress = UnicatIPInfo.Address;
-                        IPAddress maska = UnicatIPInfo.IPv4Mask;
-                        IPAddress broadcast = (GetBroadcastAddress(adress.MapToIPv4(), maska.MapToIPv4()));
-
-                    }
-                }
-
-
-
-
-
-                while (true)
-                {
-                    Console.WriteLine("Waiting for a connection...");
-
-                    Socket handler = listener.Accept();
-                    data = null;
-
-                    while (true)
-                    {
-                        bytes = new byte[1024];
-                        int bytesRec = handler.Receive(bytes);
-                        data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                        Console.WriteLine("Text received : {0}", data);
-                        break;
-                    }
-
-                    byte[] msg = Encoding.ASCII.GetBytes(data);
-
-                    handler.Send(msg);
-                    handler.Shutdown(SocketShutdown.Both);
-                    handler.Close();
-                }
-
+                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8080);
+                Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
+                string returnData = Encoding.ASCII.GetString(receiveBytes);
+                Console.WriteLine(RemoteIpEndPoint.Address.ToString() + ":" + returnData.ToString());
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Błąd"); 
-            }
-
-            
 
         }
         public static IPAddress GetBroadcastAddress(this IPAddress address, IPAddress subnetMask)
@@ -108,7 +47,7 @@ namespace eObecnosc_App
             byte[] subnetMaskBytes = subnetMask.GetAddressBytes();
 
             if (ipAdressBytes.Length != subnetMaskBytes.Length)
-                throw new ArgumentException("Lengths of IP address and subnet mask do not match.");
+                throw new ArgumentException("Za długi adres IP i maska.");
 
             byte[] broadcastAddress = new byte[ipAdressBytes.Length];
             for (int i = 0; i < broadcastAddress.Length; i++)
@@ -116,6 +55,30 @@ namespace eObecnosc_App
                 broadcastAddress[i] = (byte)(ipAdressBytes[i] | (subnetMaskBytes[i] ^ 255));
             }
             return new IPAddress(broadcastAddress);
+        }
+
+        public static void SendBroadcast()
+        {
+            UdpClient udpClient = new UdpClient();
+            NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface Interface in Interfaces)
+            {
+                if (Interface.NetworkInterfaceType == NetworkInterfaceType.Loopback) continue;
+                if (Interface.OperationalStatus != OperationalStatus.Up) continue;
+                Console.WriteLine(Interface.Description);
+                UnicastIPAddressInformationCollection UnicastIPInfoCol = Interface.GetIPProperties().UnicastAddresses;
+                foreach (UnicastIPAddressInformation UnicatIPInfo in UnicastIPInfoCol)
+                {
+
+                    IPAddress adress = UnicatIPInfo.Address;
+                    IPAddress maska = UnicatIPInfo.IPv4Mask;
+                    IPAddress broadcast = (GetBroadcastAddress(adress.MapToIPv4(), maska.MapToIPv4()));
+                    byte[] msg = Encoding.ASCII.GetBytes("Dupa");
+                    udpClient.Connect(broadcast.ToString(), 8080);
+                    udpClient.Send(msg, msg.Length);
+
+                }
+            }
         }
     }
 }
