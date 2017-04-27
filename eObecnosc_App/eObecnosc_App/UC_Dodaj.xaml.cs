@@ -37,5 +37,11 @@ namespace eObecnosc_App
         {
             InitializeComponent();
         }
+
+        private  void Przycisk_Sprawdz_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
