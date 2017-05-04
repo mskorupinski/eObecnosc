@@ -21,7 +21,7 @@ namespace eObecnosc_App
     public partial class UC_Dodaj : UserControl
     {
         private static UC_Dodaj _instancja;
-
+        const int zakres = 15000;
         public static UC_Dodaj Instancja
         {
             get
@@ -40,9 +40,22 @@ namespace eObecnosc_App
 
         private  async void Przycisk_Sprawdz_Click(object sender, RoutedEventArgs e)
         {
+            ProgressBar pokaz_czas = new ProgressBar();
+            pokaz_czas.Height = 30;
+            pokaz_czas.Width = 150;
+            pokaz_czas.Minimum = 0;
+            pokaz_czas.Maximum = 15000;
+            pokaz_czas.Margin = new Thickness(150, 150, 0, 0);
+            grid_glowny.Children.Add(pokaz_czas);
+           
+            DataGrid_Dodani_studenci.Visibility = Visibility.Hidden;
             DataGrid_Dodani_studenci.Items.Clear();
             Przycisk_Sprawdz.IsEnabled = false;
-            string temp= await obecny();
+            var progress = new Progress<int>(percent =>
+            {
+                pokaz_czas.Value = percent;
+            });
+            string temp= await obecny(progress);
             IList<string> Lista_studentow = temp.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             Lista_studentow = Lista_studentow.Distinct().ToList();
             foreach(string student in Lista_studentow)
@@ -55,10 +68,11 @@ namespace eObecnosc_App
             Dodaj.Visibility = Visibility.Visible;
             Usun.Visibility = Visibility.Visible;
             Potwierdz.Visibility = Visibility.Visible;
+            pokaz_czas.Visibility = Visibility.Hidden;
 
         }
-        private long czas=0;
-        private Task<string> obecny()
+        private int czas=0;
+        private Task<string> obecny(IProgress<int> progress)
         {
             return Task.Run(() => 
             {
@@ -68,11 +82,14 @@ namespace eObecnosc_App
                 odmierz.Interval = 5000;
                 odmierz.Start();
                 odmierz.Elapsed += Czas_wykonaj;
-                while(czas<600)
+                while(czas<zakres)
                 {
                    SocketListener sprawdz = new SocketListener();
                    sprawdz.StartListening();
                    temp+= sprawdz.Data+Environment.NewLine;
+                    //zwraca wartość
+                    if (progress != null)
+                        progress.Report(czas);
                 }
 
                 odmierz.Stop();
@@ -87,6 +104,7 @@ namespace eObecnosc_App
             SocketListener wyslij = new SocketListener();
             wyslij.SendBroadcast();
             czas += 5000;
+            
         }
 
         private void Usun_Click(object sender, RoutedEventArgs e)

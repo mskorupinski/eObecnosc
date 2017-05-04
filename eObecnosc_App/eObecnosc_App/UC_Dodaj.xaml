@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:eObecnosc_App"
              mc:Ignorable="d" 
              d:DesignHeight="640" d:DesignWidth="1274" Background="White">
-    <Grid>
+    <Grid x:Name="grid_glowny">
         <Label x:Name="Etykieta_Wybierz_przedmiot_Dodaj" Content="Wybierz przedmiot:" HorizontalAlignment="Left" Margin="76,83,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="DataGrid_Dodani_studenci" HorizontalAlignment="Left" Height="442" Margin="384,83,0,0" VerticalAlignment="Top" Width="702" Visibility="Hidden">
             <DataGrid.Columns>
