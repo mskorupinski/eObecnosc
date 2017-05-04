@@ -137,8 +137,8 @@ public class ELS {
                 sf.setPESEL(res.get(8));
             }
 
-            this.Channel.close();
-            this.StudentCard.disconnect(true);
+            //this.Channel.close();
+            //this.StudentCard.disconnect(true);
 
 
 
