@@ -11,9 +11,9 @@ namespace eObecnosc_App
     {
 
        
-        private static string data = null;
+        public  string data = null;
 
-        public static string Data
+        public  string Data
         {
             get
             {
@@ -26,22 +26,20 @@ namespace eObecnosc_App
             }
         }
 
-        public static void StartListening()
+        public  void StartListening()
         {
+            UdpClient udpClient = new UdpClient(8993);
             Console.WriteLine(IPAddress.Broadcast.ToString());
-            UdpClient udpClient = new UdpClient(8080);
 
-            while (true)
-            {
 
-                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8080);
+                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8993);
                 Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
-                string returnData = Encoding.ASCII.GetString(receiveBytes);
-                Console.WriteLine(RemoteIpEndPoint.Address.ToString() + ":" + returnData.ToString());
-            }
+                data = Encoding.ASCII.GetString(receiveBytes);
+                Console.WriteLine(RemoteIpEndPoint.Address.ToString() + ":" + data.ToString());
+            
 
         }
-        public  IPAddress GetBroadcastAddress(IPAddress address, IPAddress subnetMask)
+        public  IPAddress GetBroadcastAddress( IPAddress address, IPAddress subnetMask)
         {
             byte[] ipAdressBytes = address.GetAddressBytes();
             byte[] subnetMaskBytes = subnetMask.GetAddressBytes();
@@ -73,8 +71,8 @@ namespace eObecnosc_App
                     IPAddress adress = UnicatIPInfo.Address;
                     IPAddress maska = UnicatIPInfo.IPv4Mask;
                     IPAddress broadcast = (GetBroadcastAddress(adress.MapToIPv4(), maska.MapToIPv4()));
-                    byte[] msg = Encoding.ASCII.GetBytes("Dupa");
-                    udpClient.Connect(broadcast.ToString(), 8080);
+                    byte[] msg = Encoding.ASCII.GetBytes("192.168.43.3");
+                    udpClient.Connect(broadcast.ToString(), 8992);
                     udpClient.Send(msg, msg.Length);
 
                 }
