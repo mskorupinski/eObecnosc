@@ -7,7 +7,7 @@ using System.Net.NetworkInformation;
 
 namespace eObecnosc_App
 {
-    public static class SocketListener
+    public  class SocketListener
     {
 
        
@@ -41,7 +41,7 @@ namespace eObecnosc_App
             }
 
         }
-        public static IPAddress GetBroadcastAddress(this IPAddress address, IPAddress subnetMask)
+        public  IPAddress GetBroadcastAddress(IPAddress address, IPAddress subnetMask)
         {
             byte[] ipAdressBytes = address.GetAddressBytes();
             byte[] subnetMaskBytes = subnetMask.GetAddressBytes();
@@ -57,7 +57,7 @@ namespace eObecnosc_App
             return new IPAddress(broadcastAddress);
         }
 
-        public static void SendBroadcast()
+        public  void SendBroadcast()
         {
             UdpClient udpClient = new UdpClient();
             NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();

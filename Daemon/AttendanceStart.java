@@ -52,18 +52,20 @@ public class AttendanceStart {
 
 
             AttendanceStart.teacher_ip_sock.receive(packet);
+            JOptionPane.showMessageDialog(null, "Odebrano dane: " + new String(buffer));
             StudentFile sf = card.ReadData();
 
-            while ((!sf.getIndex().equals("")) && (sf.getIndex() != null) ) {
+            while ((sf.getIndex().equals("")) || (sf.getIndex() == null) ) {
                 JOptionPane.showMessageDialog(null, "Bład odczytu danych z karty. Włóż ponownie kartę");
                 sf = card.ReadData();
             }
             String ip = new String(buffer);  //Teacher's computer ip address
+            JOptionPane.showMessageDialog(null, sf.getIndex());
 
-            while (! IPv4Validator.isValidInet4Address(ip) ) {
-                AttendanceStart.teacher_ip_sock.receive(packet);
-                ip = new String(buffer);
-            }
+            //while (! IPv4Validator.isValidInet4Address(ip) ) {
+              //  AttendanceStart.teacher_ip_sock.receive(packet);
+                //ip = new String(buffer);
+           // }
 
             int TryCounter = 3;
 
