@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -42,25 +41,37 @@ namespace eObecnosc_App
         private  async void Przycisk_Sprawdz_Click(object sender, RoutedEventArgs e)
         {
 
-            string temp = "";
-            long czas_poczatek = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-            long czas_roznica = 0;
-            SocketListener broadcast = new SocketListener();
-            broadcast.SendBroadcast();
-
-            
-
-                broadcast.StartListening();
-                temp += (broadcast.data + Environment.NewLine);
-                Console.WriteLine(czas_roznica);
-                long czas_aktualny = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-                czas_roznica = czas_aktualny - czas_poczatek;
-
-            
-            tescik.Text=temp;
+            tescik.Text = await obecny();
 
         }
+        private long czas=0;
+        private Task<string> obecny()
+        {
+            return Task.Run(() => 
+            {
+                string temp = "";
+                Timer odmierz = new Timer();
+                odmierz.Interval = 1000;
+                odmierz.Start();
+                odmierz.Elapsed += Czas_wykonaj;
+                while(czas<60000)
+                {
+                    SocketListener sprawdz = new SocketListener();
+                    sprawdz.StartListening();
+                }
 
-        
+                odmierz.Stop();
+                temp = "koniec";
+                return temp;
+            });
+        }
+
+        private  void Czas_wykonaj(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            SocketListener wyslij = new SocketListener();
+            wyslij.SendBroadcast();
+            czas += 1000;
+        }
+
     }
 }

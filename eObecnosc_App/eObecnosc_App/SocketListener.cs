@@ -7,13 +7,13 @@ using System.Net.NetworkInformation;
 
 namespace eObecnosc_App
 {
-    public  class SocketListener
+    public class SocketListener
     {
 
-       
-        public  string data = null;
 
-        public  string Data
+        public string data = null;
+
+        public string Data
         {
             get
             {
@@ -26,20 +26,33 @@ namespace eObecnosc_App
             }
         }
 
-        public  void StartListening()
+        public void StartListening()
         {
-            UdpClient udpClient = new UdpClient(8993);
-            Console.WriteLine(IPAddress.Broadcast.ToString());
 
-
+            try
+            {
+                UdpClient udpClient = new UdpClient(8993);
+                udpClient.Client.ReceiveTimeout = 500;
+                Console.WriteLine(IPAddress.Broadcast.ToString());
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8993);
                 Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
                 data = Encoding.ASCII.GetString(receiveBytes);
                 Console.WriteLine(RemoteIpEndPoint.Address.ToString() + ":" + data.ToString());
-            
+                udpClient.Close();
+                if (RemoteIpEndPoint.Address != null)
+                {
+                    udpClient = new UdpClient();
+                    udpClient.Connect(RemoteIpEndPoint.Address.ToString(), 8994);
+                    udpClient.Client.SendTimeout = 500;
+                    Byte[] senddata = Encoding.ASCII.GetBytes("Ack");
+                    udpClient.Send(senddata, senddata.Length);
+                    udpClient.Close();
+                }
+            }
+            catch (Exception e) { }
 
         }
-        public  IPAddress GetBroadcastAddress( IPAddress address, IPAddress subnetMask)
+        public IPAddress GetBroadcastAddress(IPAddress address, IPAddress subnetMask)
         {
             byte[] ipAdressBytes = address.GetAddressBytes();
             byte[] subnetMaskBytes = subnetMask.GetAddressBytes();
@@ -55,7 +68,7 @@ namespace eObecnosc_App
             return new IPAddress(broadcastAddress);
         }
 
-        public  void SendBroadcast()
+        public void SendBroadcast()
         {
             UdpClient udpClient = new UdpClient();
             NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
@@ -71,12 +84,14 @@ namespace eObecnosc_App
                     IPAddress adress = UnicatIPInfo.Address;
                     IPAddress maska = UnicatIPInfo.IPv4Mask;
                     IPAddress broadcast = (GetBroadcastAddress(adress.MapToIPv4(), maska.MapToIPv4()));
-                    byte[] msg = Encoding.ASCII.GetBytes("192.168.43.3");
+                    byte[] msg = Encoding.ASCII.GetBytes(adress.MapToIPv4().ToString());
                     udpClient.Connect(broadcast.ToString(), 8992);
                     udpClient.Send(msg, msg.Length);
 
                 }
             }
+            udpClient.Close();
+
         }
     }
 }
