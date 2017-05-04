@@ -11,7 +11,7 @@ namespace eObecnosc_App
     {
 
 
-        public string data = null;
+        public string data = "";
 
         public string Data
         {
@@ -28,11 +28,11 @@ namespace eObecnosc_App
 
         public void StartListening()
         {
+                UdpClient udpClient = new UdpClient(8993);
 
             try
             {
-                UdpClient udpClient = new UdpClient(8993);
-                udpClient.Client.ReceiveTimeout = 500;
+                udpClient.Client.ReceiveTimeout = 2000;
                 Console.WriteLine(IPAddress.Broadcast.ToString());
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8993);
                 Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
@@ -43,13 +43,13 @@ namespace eObecnosc_App
                 {
                     udpClient = new UdpClient();
                     udpClient.Connect(RemoteIpEndPoint.Address.ToString(), 8994);
-                    udpClient.Client.SendTimeout = 500;
+                    udpClient.Client.SendTimeout = 1000;
                     Byte[] senddata = Encoding.ASCII.GetBytes("Ack");
                     udpClient.Send(senddata, senddata.Length);
                     udpClient.Close();
                 }
             }
-            catch (Exception e) { }
+            catch (SocketException e) { udpClient.Close(); }
 
         }
         public IPAddress GetBroadcastAddress(IPAddress address, IPAddress subnetMask)
@@ -80,18 +80,36 @@ namespace eObecnosc_App
                 UnicastIPAddressInformationCollection UnicastIPInfoCol = Interface.GetIPProperties().UnicastAddresses;
                 foreach (UnicastIPAddressInformation UnicatIPInfo in UnicastIPInfoCol)
                 {
-
-                    IPAddress adress = UnicatIPInfo.Address;
-                    IPAddress maska = UnicatIPInfo.IPv4Mask;
-                    IPAddress broadcast = (GetBroadcastAddress(adress.MapToIPv4(), maska.MapToIPv4()));
-                    byte[] msg = Encoding.ASCII.GetBytes(adress.MapToIPv4().ToString());
-                    udpClient.Connect(broadcast.ToString(), 8992);
-                    udpClient.Send(msg, msg.Length);
+                    try
+                    {
+                        IPAddress adress = UnicatIPInfo.Address;
+                        IPAddress maska = UnicatIPInfo.IPv4Mask;
+                        IPAddress broadcast = (GetBroadcastAddress(adress.MapToIPv4(), maska.MapToIPv4()));
+                        
+                        byte[] msg = Encoding.ASCII.GetBytes(adress.MapToIPv4().ToString());
+                        udpClient.Connect(broadcast.ToString(), 8992);
+                        udpClient.Send(msg, msg.Length);
+                    }
+                    catch (Exception e)
+                    {
+                        udpClient.Close();
+                    }
 
                 }
             }
             udpClient.Close();
 
         }
+       /* public void Send()
+        {
+            UdpClient udpClient = new UdpClient();
+            
+            udpClient.Connect(IPAddress.Broadcast, 8992);
+            byte[] msg = Encoding.ASCII.GetBytes(IPAddress.Parse(((IPEndPoint)udpClient.LocalEndPoint).Address.ToString()));
+
+            udpClient.Send(msg, msg.Length);
+
+
+        }*/
     }
 }

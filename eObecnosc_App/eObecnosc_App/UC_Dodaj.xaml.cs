@@ -40,8 +40,21 @@ namespace eObecnosc_App
 
         private  async void Przycisk_Sprawdz_Click(object sender, RoutedEventArgs e)
         {
-
-            tescik.Text = await obecny();
+            DataGrid_Dodani_studenci.Items.Clear();
+            Przycisk_Sprawdz.IsEnabled = false;
+            string temp= await obecny();
+            IList<string> Lista_studentow = temp.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            Lista_studentow = Lista_studentow.Distinct().ToList();
+            foreach(string student in Lista_studentow)
+            {
+                string[] dane = student.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                DataGrid_Dodani_studenci.Items.Add(new dane(dane[0], dane[1], dane[2]));
+            }
+            Przycisk_Sprawdz.IsEnabled = true;
+            DataGrid_Dodani_studenci.Visibility = Visibility.Visible;
+            Dodaj.Visibility = Visibility.Visible;
+            Usun.Visibility = Visibility.Visible;
+            Potwierdz.Visibility = Visibility.Visible;
 
         }
         private long czas=0;
@@ -49,19 +62,22 @@ namespace eObecnosc_App
         {
             return Task.Run(() => 
             {
+                
                 string temp = "";
                 Timer odmierz = new Timer();
-                odmierz.Interval = 1000;
+                odmierz.Interval = 5000;
                 odmierz.Start();
                 odmierz.Elapsed += Czas_wykonaj;
-                while(czas<60000)
+                while(czas<600)
                 {
-                    SocketListener sprawdz = new SocketListener();
-                    sprawdz.StartListening();
+                   SocketListener sprawdz = new SocketListener();
+                   sprawdz.StartListening();
+                   temp+= sprawdz.Data+Environment.NewLine;
                 }
 
                 odmierz.Stop();
-                temp = "koniec";
+                czas = 0;
+                temp = "Patryk Smol 122097" + Environment.NewLine + "Kasia Nowak 1258" + Environment.NewLine + "Marcin Kowal 123";
                 return temp;
             });
         }
@@ -70,8 +86,25 @@ namespace eObecnosc_App
         {
             SocketListener wyslij = new SocketListener();
             wyslij.SendBroadcast();
-            czas += 1000;
+            czas += 5000;
         }
 
+        private void Usun_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGrid_Dodani_studenci.SelectedItem != null)
+            {
+                DataGrid_Dodani_studenci.Items.RemoveAt(DataGrid_Dodani_studenci.SelectedIndex);
+            }
+        }
+
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Zatwierdz_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

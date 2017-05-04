@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="dane.cs" />
     <Compile Include="SocketListener.cs" />
     <Compile Include="Sterowanie.xaml.cs">
       <DependentUpon>Sterowanie.xaml</DependentUpon>
