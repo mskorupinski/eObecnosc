@@ -36,7 +36,7 @@ namespace eObecnosc_App
                 Console.WriteLine(IPAddress.Broadcast.ToString());
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8993);
                 Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
-                data = Encoding.ASCII.GetString(receiveBytes);
+                data = Encoding.UTF8.GetString(receiveBytes);
                 Console.WriteLine(RemoteIpEndPoint.Address.ToString() + ":" + data.ToString());
                 udpClient.Close();
                 if (RemoteIpEndPoint.Address != null)
@@ -44,7 +44,7 @@ namespace eObecnosc_App
                     udpClient = new UdpClient();
                     udpClient.Connect(RemoteIpEndPoint.Address.ToString(), 8994);
                     udpClient.Client.SendTimeout = 1000;
-                    Byte[] senddata = Encoding.ASCII.GetBytes("Ack");
+                    Byte[] senddata = Encoding.UTF8.GetBytes("Ack");
                     udpClient.Send(senddata, senddata.Length);
                     udpClient.Close();
                 }
@@ -86,7 +86,7 @@ namespace eObecnosc_App
                         IPAddress maska = UnicatIPInfo.IPv4Mask;
                         IPAddress broadcast = (GetBroadcastAddress(adress.MapToIPv4(), maska.MapToIPv4()));
                         
-                        byte[] msg = Encoding.ASCII.GetBytes(adress.MapToIPv4().ToString());
+                        byte[] msg = Encoding.UTF8.GetBytes("192.168.137.89");
                         udpClient.Connect(broadcast.ToString(), 8992);
                         udpClient.Send(msg, msg.Length);
                     }

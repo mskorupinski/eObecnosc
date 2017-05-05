@@ -23,10 +23,11 @@
                   
         <ComboBox x:Name="ComboBox_Wybierz_przedmiot" HorizontalAlignment="Left" Margin="83,119,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="Etykieta_Wybierz_grupe_dodaj" Content="Wybierz grupę:" HorizontalAlignment="Left" Margin="83,166,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="83,217,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="ComboBox_Wybierz_grupe" HorizontalAlignment="Left" Margin="83,217,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="Przycisk_Sprawdz" Content="Sprawdź obecność" HorizontalAlignment="Left" Margin="83,312,0,0" VerticalAlignment="Top" Width="120" IsCancel="True" Click="Przycisk_Sprawdz_Click"/>
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="977,557,0,0" VerticalAlignment="Top" Width="75" Click="Dodaj_Click" Visibility="Hidden"/>
-        <Button x:Name="Usun" Content="Usuń" HorizontalAlignment="Left" Margin="1074,557,0,0" VerticalAlignment="Top" Width="75" Click="Usun_Click" Visibility="Hidden"/>
-        <Button x:Name="Potwierdz" Content="Potwierdź" HorizontalAlignment="Left" Margin="1173,557,0,0" VerticalAlignment="Top" Width="75" Click="Zatwierdz_Click" Visibility="Hidden"/>
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="870,557,0,0" VerticalAlignment="Top" Width="75" Click="Dodaj_Click" Visibility="Hidden"/>
+        <Button x:Name="Usun" Content="Usuń" HorizontalAlignment="Left" Margin="968,557,0,0" VerticalAlignment="Top" Width="75" Click="Usun_Click" Visibility="Hidden"/>
+        <Button x:Name="Potwierdz" Content="Potwierdź" HorizontalAlignment="Left" Margin="1070,557,0,0" VerticalAlignment="Top" Width="75" Click="Potwierdz_Click" Visibility="Hidden"/>
+        <Button x:Name="Anuluj" Content="Anuluj" HorizontalAlignment="Left" Margin="1171,557,0,0" VerticalAlignment="Top" Width="75" Click="Anuluj_Click" Visibility="Hidden"/>
     </Grid>
 </UserControl>

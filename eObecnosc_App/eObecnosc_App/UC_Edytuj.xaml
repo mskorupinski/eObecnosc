@@ -6,5 +6,12 @@
              xmlns:local="clr-namespace:eObecnosc_App"
              mc:Ignorable="d" 
              d:DesignHeight="640" d:DesignWidth="1274" Background="White">
-    <Grid/>
+    <Grid>
+        <Label x:Name="Label_Edytuj" Content="Opcje:" HorizontalAlignment="Left" Margin="80,41,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Dodaj_przedmiot" Content="Dodaj przedmiot" HorizontalAlignment="Left" Margin="80,93,0,0" VerticalAlignment="Top" Width="117" Click="Dodaj_przedmiot_Click"/>
+        <Button x:Name="Dodaj_grupe" Content="Dodaj grupę" HorizontalAlignment="Left" Margin="80,146,0,0" VerticalAlignment="Top" Width="117"/>
+        <Button x:Name="Import" Content="Importuj" HorizontalAlignment="Left" Margin="80,200,0,0" VerticalAlignment="Top" Width="117"/>
+        <Button x:Name="Eksport" Content="Eksportuj" HorizontalAlignment="Left" Margin="80,249,0,0" VerticalAlignment="Top" Width="117"/>
+        <Grid x:Name="Edycja_Grid" HorizontalAlignment="Left" Height="500" Margin="292,93,0,0" VerticalAlignment="Top" Width="900"/>
+    </Grid>
 </UserControl>

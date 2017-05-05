@@ -77,8 +77,20 @@
     <Compile Include="UC_Edytuj.xaml.cs">
       <DependentUpon>UC_Edytuj.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_Edytuj_Dodaj_przedmiot.xaml.cs">
+      <DependentUpon>UC_Edytuj_Dodaj_przedmiot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Edytuj_Eksport.xaml.cs">
+      <DependentUpon>UC_Edytuj_Eksport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Edytuj_Import.xaml.cs">
+      <DependentUpon>UC_Edytuj_Import.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_Obecnosc.xaml.cs">
       <DependentUpon>UC_Obecnosc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Edytuj_Dodaj_grupe.xaml.cs">
+      <DependentUpon>UC_Edytuj_Dodaj_grupe.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -104,7 +116,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC_Edytuj_Dodaj_przedmiot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_Edytuj_Eksport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_Edytuj_Import.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_Obecnosc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_Edytuj_Dodaj_grupe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

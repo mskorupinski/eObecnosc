@@ -33,8 +33,8 @@ namespace eObecnosc_App
         private static string database = "wireks2_kuba";
         private static string uid = "wireks2_kuba";
         private static string password = "G4zQIBgm";
-        private static string connectionString= "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
+        public static string connectionString= "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+        public static int ID;
         private void Przycisk_Zaloguj_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -42,15 +42,22 @@ namespace eObecnosc_App
                 
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
-                String readCommand = "select count(*) from Uzytkownicy  where Uzytkownicy.Login = @param_val_1 and Uzytkownicy.Password = MD5(@param_val_2)";
+                String readCommand = "select Id_Prowadzacy from Prowadzacy  where Prowadzacy.Login = @param_val_1 and Prowadzacy.Haslo = MD5(@param_val_2)";
                 MySqlCommand m = new MySqlCommand(readCommand, con);
                 m.Parameters.AddWithValue("@param_val_1", Login.Text);
                 m.Parameters.AddWithValue("@param_val_2", Haslo.Password);
-                int liczba_uzytkownikow = Convert.ToInt32(m.ExecuteScalar());
-                if (liczba_uzytkownikow == 1)
+                int id = Convert.ToInt32(m.ExecuteScalar());
+                if (id > 0)
                 {
                     Widok.Children.Clear();
-                    Widok.Children.Add(new Sterowanie());
+                    Sterowanie panel_g = new Sterowanie();
+                    Widok.Children.Add(panel_g);
+                    panel_g.Panel.Children.Add(UC_Dodaj.Instancja);
+                    ID = id;
+                }
+                else
+                {
+                    MessageBox.Show("Nieporawny login lub hasło", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 con.Close();
                 

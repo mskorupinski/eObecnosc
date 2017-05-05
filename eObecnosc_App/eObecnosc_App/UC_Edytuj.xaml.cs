@@ -37,5 +37,14 @@ namespace eObecnosc_App
         {
             InitializeComponent();
         }
+        
+        
+        private void Dodaj_przedmiot_Click(object sender, RoutedEventArgs e)
+        {
+            UC_Edytuj_Dodaj_przedmiot temp = new UC_Edytuj_Dodaj_przedmiot();
+            Edycja_Grid.Children.Clear();
+            Edycja_Grid.Children.Add(temp);
+
+        }
     }
 }
