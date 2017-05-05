@@ -60,7 +60,7 @@ namespace eObecnosc_App
                     pokaz_czas.Value = percent;
                 });
                 string temp = await obecny(progress);
-                IList<string> Lista_studentow = temp.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+                IList<string> Lista_studentow = temp.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 Lista_studentow = Lista_studentow.Distinct().ToList();
                 foreach (string student in Lista_studentow)
                 {

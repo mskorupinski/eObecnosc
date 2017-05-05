@@ -32,7 +32,7 @@ namespace eObecnosc_App
 
             try
             {
-                udpClient.Client.ReceiveTimeout = 2000;
+                udpClient.Client.ReceiveTimeout = 3000;
                 Console.WriteLine(IPAddress.Broadcast.ToString());
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8993);
                 Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
@@ -43,7 +43,7 @@ namespace eObecnosc_App
                 {
                     udpClient = new UdpClient();
                     udpClient.Connect(RemoteIpEndPoint.Address.ToString(), 8994);
-                    udpClient.Client.SendTimeout = 1000;
+                    udpClient.Client.SendTimeout = 500;
                     Byte[] senddata = Encoding.UTF8.GetBytes("Ack");
                     udpClient.Send(senddata, senddata.Length);
                     udpClient.Close();
