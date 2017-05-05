@@ -21,7 +21,7 @@ namespace eObecnosc_App
     public partial class UC_Dodaj : UserControl
     {
         private static UC_Dodaj _instancja;
-        const int zakres = 15000;
+        const int zakres = 60000;
         public static UC_Dodaj Instancja
         {
             get
@@ -44,7 +44,7 @@ namespace eObecnosc_App
             pokaz_czas.Height = 30;
             pokaz_czas.Width = 150;
             pokaz_czas.Minimum = 0;
-            pokaz_czas.Maximum = 15000;
+            pokaz_czas.Maximum = zakres;
             pokaz_czas.Margin = new Thickness(150, 150, 0, 0);
             grid_glowny.Children.Add(pokaz_czas);
            
@@ -94,7 +94,7 @@ namespace eObecnosc_App
 
                 odmierz.Stop();
                 czas = 0;
-                temp = "Patryk Smol 122097" + Environment.NewLine + "Kasia Nowak 1258" + Environment.NewLine + "Marcin Kowal 123";
+                temp = "Patryk Smol 122097" + Environment.NewLine + "Kasia Nowak 1258" + Environment.NewLine + "Marcin Kowal 123" + Environment.NewLine + "Tomek Encki 123";
                 return temp;
             });
         }
