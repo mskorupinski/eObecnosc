@@ -1,0 +1,96 @@
+unit MySQLConectionSettings;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, INIFiles, Exceptions, Dialogs;
+
+type
+TMySQLConectionSettings = class
+private
+  DBName, DBHost, DBUser, DBPassword, DBUseSSL : String;
+  DBPort: Integer;
+
+  const ConfigPath : String  = 'config\settings.ini'; //Path to config file
+public
+constructor Create(ProgramPath: String);
+
+function GetDBName() : String;
+function GetDBHost() : String;
+function GetDBPort() : Integer;
+function GetDBUseSSL() : String;
+function GetDBUser() : String;
+function GetDBPassword() : String;
+
+end;
+
+implementation
+
+constructor TMySQLConectionSettings.Create(ProgramPath: string);
+var
+Settings : TINIFile;
+
+begin
+if not (DirectoryExists(ExtractFilePath(ProgramPath) + ExtractFilePath(ConfigPath))) then
+  MkDir(ExtractFilePath(ProgramPath) + ExtractFilePath(ConfigPath));
+
+  Settings := TINIFile.Create(ExtractFilePath(ProgramPath) + self.ConfigPath);
+  try
+    if not Settings.SectionExists('Database') then
+    begin
+      Settings.WriteString('Database', 'Host', '');
+      Settings.WriteInteger('Database', 'Port', 3306);
+      Settings.WriteString('Database', 'UseSSL', 'true');
+      Settings.WriteString('Database', 'DatabaseName', '');
+      Settings.WriteString('Database', 'User', '');
+      Settings.WriteString('Database', 'Password', '');
+
+      raise ESettingsError.Create('Brak konfiguracji bazy. Ustaw prarametry w pliku: ' + self.ConfigPath);
+    end;
+
+    self.DBName := Settings.ReadString('Database', 'DatabaseName', '');
+    self.DBHost := Settings.ReadString('Database', 'Host', '');
+    self.DBPort := Settings.ReadInteger('Database', 'Port', 3306);
+    self.DBUseSSL := Settings.ReadString('Database', 'UseSSL', 'true');
+    self.DBUser := Settings.ReadString('Database', 'User', '');
+    self.DBPassword := Settings.ReadString('Database', 'Password', '');
+
+  finally
+    Settings.Free;
+  end;
+
+end;
+
+
+function TMySQLConectionSettings.GetDBName;
+begin
+  Result := self.DBName;
+end;
+
+function TMySQLConectionSettings.GetDBHost;
+begin
+  Result := self.DBHost;
+end;
+
+function TMySQLConectionSettings.GetDBUser;
+begin
+  Result := self.DBUser;
+end;
+
+function TMySQLConectionSettings.GetDBPassword;
+begin
+  Result := self.DBPassword;
+end;
+
+function TMySQLConectionSettings.GetDBPort;
+begin
+  Result := self.DBPort;
+end;
+
+function TMySQLConectionSettings.GetDBUseSSL;
+begin
+  Result := self.DBUseSSL;
+end;
+
+
+end.

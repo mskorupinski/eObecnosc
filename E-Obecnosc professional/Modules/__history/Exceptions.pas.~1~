@@ -1,0 +1,11 @@
+unit Exceptions;
+
+interface
+uses SysUtils;
+
+type
+ESettingsError = class(Exception);
+
+implementation
+
+end.

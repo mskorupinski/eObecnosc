@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.724,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\Modules\UserModel.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.699,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\LoginUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.128,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.835,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.993,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\StudentsFormUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.847,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.602,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.464,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.407,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\UserRegisterUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.576,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.918,C:\Users\Kuba\Desktop\eObecnosc\DBEngineModules.dfm=C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.047,C:\Users\Kuba\Desktop\eObecnosc\Modules\Exceptions.pas=C:\Users\Kuba\Desktop\eObecnosc\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.479,C:\Users\Kuba\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\MainUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.621,=C:\Users\Kuba\Desktop\eObecnosc\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.295,=C:\Users\Kuba\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.450,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.503,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\Modules\StudentModel.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.645,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\AddStudentFormUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.263,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\PresenceFormUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.230,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.591,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\MainUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.591,C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm=C:\Users\Kuba\Desktop\eObecnosc\MainUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.699,C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm=C:\Users\Kuba\Desktop\eObecnosc\LoginUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.645,C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm=C:\Users\Kuba\Desktop\eObecnosc\AddStudentFormUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.993,C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm=C:\Users\Kuba\Desktop\eObecnosc\StudentsFormUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.360,C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm=C:\Users\Kuba\Desktop\eObecnosc\ViewFormUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.490,C:\Users\Kuba\Desktop\eObecnosc\MainUnit.dfm=C:\Users\Kuba\Desktop\eObecnosc\MainMenuUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.029,=C:\Users\Kuba\Desktop\eObecnosc\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.407,C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm=C:\Users\Kuba\Desktop\eObecnosc\UserRegisterUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.479,C:\Users\Kuba\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Kuba\Desktop\eObecnosc\MainUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.425,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.648,=C:\Users\Kuba\Desktop\eObecnosc\PassWord.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.360,C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas=C:\Users\Kuba\Desktop\eObecnosc\ViewFormUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.562,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.918,C:\Users\Kuba\Desktop\eObecnosc\DBEngineModules.pas=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.490,C:\Users\Kuba\Desktop\eObecnosc\MainUnit.pas=C:\Users\Kuba\Desktop\eObecnosc\MainMenuUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.165,C:\Users\Kuba\Desktop\eObecnosc\Modules\MySQLConectionSettings.pas=C:\Users\Kuba\Desktop\eObecnosc\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.263,C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm=C:\Users\Kuba\Desktop\eObecnosc\PresenceFormUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.729,C:\Users\Kuba\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Kuba\Desktop\eObecnosc\eObecnosc.dproj</Transaction>
+    <Transaction>2017.05.16 21:33:03.398,=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+    <Transaction>2017.05.16 23:56:23.205,C:\Users\Kuba\Desktop\eObecnosc\CheckPresenceFormUnit.dfm=C:\Users\Kuba\Desktop\eObecnosc\Unit1.dfm</Transaction>
+    <Transaction>2017.05.16 23:56:23.205,C:\Users\Kuba\Desktop\eObecnosc\CheckPresenceFormUnit.pas=C:\Users\Kuba\Desktop\eObecnosc\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

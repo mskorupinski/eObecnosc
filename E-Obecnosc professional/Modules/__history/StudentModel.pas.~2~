@@ -1,0 +1,124 @@
+unit StudentModel;
+
+interface
+
+uses FireDAC.Comp.Client, Firedac.DApt, System.StrUtils, IdHashSHA, SysUtils, Exceptions, Dialogs, System.Classes;
+
+type
+TStudent = class
+  ID: Integer;
+  Imie: String;
+  Nazwisko: String;
+  Indeks: String;
+end;
+
+TStudentModel = class
+public
+  function GetStudentData(Query: TFDQuery; ID: Integer) : TStudent;
+  function ChangeStudentData(Query: TFDQuery; Student: TStudent) : Boolean;
+  function DeleteStudent(Query: TFDQuery; ID: Integer) : Boolean;
+  function AddStudent(Query: TFDQuery; Student: TStudent) : Boolean;
+  function IsPresence(Query: TFDQuery; Student: TStudent; StudentID; RaportID: Integer) :  Boolean;
+
+  procedure GetRaports(Query: TFDQuery; LessonID: Integer);
+  procedure GetLessons(Query: TFDQuery; UserID: Integer);
+  procedure Search(Query: TFDQuery; Category: String; Value: String);
+end;
+
+implementation
+
+function TStudentModel.GetStudentData(Query: TFDQuery; ID: Integer);
+begin
+  Query.SQL.Text := 'SELECT * FROM Studenci WHERE ID = :ID';
+  Query.ParamByName('ID').AsInteger := ID;
+  Query.OpenOrExecute;
+
+  Result := TStudent.Create;
+
+  Query.First;
+  Result.ID := ID;
+  Result.Imie := Query.FieldByName('Imie').AsString;
+  Result.Nazwisko := Query.FieldByName('Nazwisko').AsString;
+  Result.Indeks := Query.FieldByName('Indeks').AsString;
+end;
+
+
+function TStudentModel.ChangeStudentData(Query: TFDQuery; Student: TStudent);
+begin
+  Query.SQL.Text := 'UPDATE Studenci SET Imie = :imie, Nazwisko = :nazwisko, Indeks = :indeks WHERE ID = :ID';
+  Query.ParamByName('ID').AsInteger := Student.ID;
+  Query.ParamByName('imie').AsString := Student.Imie;
+  Query.ParamByName('nazwisko').AsString := Student.Nazwisko;
+  Query.ParamByName('indeks').AsString := Student.Indeks;
+  Query.OpenOrExecute;
+
+  Result := True;
+end;
+
+
+function TStudentModel.DeleteStudent(Query: TFDQuery; ID: Integer);
+begin
+  Query.SQL.Text := 'DELETE FROM Studenci WHERE ID = :ID';
+  Query.ParamByName('ID').AsInteger := ID;
+  Query.OpenOrExecute;
+end;
+
+
+function TStudentModel.AddStudent(Query: TFDQuery; Student: TStudent);
+begin
+  Query.SQL.Text := 'INSERT INTO Studenci(Imie, Nazwisko, Indeks) VALUES (:imie, :nazwisko, :indeks)';
+  Query.ParamByName('imie').AsString := Student.Imie;
+  Query.ParamByName('nazwisko').AsString := Student.Nazwisko;
+  Query.ParamByName('indeks').AsString := Student.Indeks;
+  Query.OpenOrExecute;
+
+  Result := True;
+end;
+
+
+function TStudentModel.IsPresence(Query: TFDQuery; Student: TStudent; StudentID; RaportID: Integer);
+begin
+  Query.SQL.Text := 'SELECT ID FROM Obecnosci WHERE ID_Studenta = :id_studenta AND ID_Dziennika_Zajec = :id';
+  Query.ParamByName('id_studenta').AsInteger := Student.ID;
+  Query.ParamByName('id').AsInteger := RaportID;
+  Query.OpenOrExecute;
+
+
+  Query.First;
+  if Query.FieldByName('ID').AsInteger > 0 then Result := True else Result := False;
+
+end;
+
+
+procedure TStudentModel.GetRaports(Query: TFDQuery; LessonID: Integer);
+begin
+  Query.SQL.Text := 'SELECT Data, Sala FROM Dziennik_zajec WHERE ID_Zajec = :id';
+  Query.ParamByName('id').AsInteger := LessonID;
+  Query.OpenOrExecute;
+
+end;
+
+
+procedure TStudentModel.GetLessons(Query: TFDQuery; UserID: Integer);
+begin
+  Query.SQL.Text := 'SELECT * FROM Zajecia WHERE ID_Uzytkownika = :id';
+  Query.ParamByName('id').AsInteger := UserID;
+  Query.OpenOrExecute;
+end;
+
+
+procedure TStudentModel.Search(Query: TFDQuery; Category: string; Value: string);
+begin
+  if (Category.IsEmpty) or (Value.IsEmpty) then
+  begin
+    Query.SQL.Text := 'SELECT * FROM Studenci';
+  end else
+  begin
+    Query.SQL.Text := 'SELECT * FROM Studenci WHERE ' + Category + ' = :value';
+    Query.ParamByName('value').AsInteger := Value;
+  end;
+
+  Query.OpenOrExecute;
+end;
+
+end.
