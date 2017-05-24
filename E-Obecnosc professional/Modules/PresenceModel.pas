@@ -68,7 +68,7 @@ end;
 
 procedure TPresenceModel.Present(var Query: TFDQuery; ID_Dziennika: Integer);
 begin
-  Query.SQL.Text := 'SELECT s.ID as ID, s.Imie as Imie, s.Nazwisko as Nazwisko, s.Indeks as Indeks  FROM Obcnosc as o INNER JOIN Studenci as s ON s.ID = o.ID_Studenta  WHERE o.ID_Dziennika_Zajec = :id';
+  Query.SQL.Text := 'SELECT s.ID as ID, s.Imie as Imie, s.Nazwisko as Nazwisko, s.Indeks as Indeks  FROM Obecnosci as o INNER JOIN Studenci as s ON s.ID = o.ID_Studenta  WHERE o.ID_Dziennika_Zajec = :id';
   Query.ParamByName('id').AsInteger := ID_Dziennika;
   Query.OpenOrExecute;
 end;
@@ -77,7 +77,7 @@ procedure TPresenceModel.unPresent(var Query: TFDQuery; ID_Dziennika: Integer);
 var
 Temp: String;
 begin
-  Temp := '(SELECT st.ID FROM Obcnosc as ob INNER JOIN Studenci as st ON st.ID = ob.ID_Studenta  WHERE ob.ID_Dziennika_Zajec = :id)';
+  Temp := '(SELECT st.ID FROM Obecnosci as ob INNER JOIN Studenci as st ON st.ID = ob.ID_Studenta  WHERE ob.ID_Dziennika_Zajec = :id)';
   Query.SQL.Text := 'SELECT s.ID as ID, s.Imie as Imie, s.Nazwisko as Nazwisko, s.Indeks as Indeks  FROM Studenci as s INNER JOIN Grupy as g ON g.ID_Studenta = s.ID WHERE g.ID_Zajec = (SELECT ID_Zajec FROM Dziennik_zajec WHERE ID = :id) AND s.ID NOT IN ' + Temp;
   Query.ParamByName('id').AsInteger := ID_Dziennika;
   Query.OpenOrExecute;
@@ -126,12 +126,13 @@ var
   q1, q2: String;
 begin
   q1 := 'INSERT INTO Obecnosci(ID_Dziennika_Zajec, ID_Studenta) VALUES (:id_dziennika, :id_studenta)';
-  q2 := 'SELECT ID FROM Studenci WHERE Indeks = :indeks LIMIT 1';
+  q2 := 'SELECT ID FROM Studenci WHERE Indeks = :indeks';
 
   for I := 0 to self.TempList.Count - 1  do
   begin
     Query.SQL.Text := q2;
     Query.ParamByName('indeks').AsString := self.TempList[I];
+    ShowMessage(Query.SQL.Text);
     Query.OpenOrExecute;
 
     Query.First;
