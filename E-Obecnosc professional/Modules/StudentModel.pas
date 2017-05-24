@@ -105,7 +105,7 @@ end;
 
 procedure TStudentModel.GetRaports(var Query: TFDQuery; LessonID: Integer);
 begin
-  Query.SQL.Text := 'SELECT Data, Sala FROM Dziennik_zajec WHERE ID_Zajec = :id';
+  Query.SQL.Text := 'SELECT Data_rozpoczecia, Sala FROM Dziennik_zajec WHERE ID_Zajec = :id';
   Query.ParamByName('id').AsInteger := LessonID;
   Query.OpenOrExecute;
 
