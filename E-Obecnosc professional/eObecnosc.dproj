@@ -145,7 +145,25 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="CheckPresenceFormUnit.pas">
-            <Form>Form1</Form>
+            <Form>CheckPresenceForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="LessonFormUnit.pas">
+            <Form>LessonsForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="AddLessonUnit.pas">
+            <Form>AddLessonForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Modules\LessonModel.pas"/>
+        <DCCReference Include="AddStudentToLessonUnit.pas">
+            <Form>AddStudentToLessonForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Modules\PresenceModel.pas"/>
+        <DCCReference Include="PresenceLogUnit.pas">
+            <Form>PresenceLogForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

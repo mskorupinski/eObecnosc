@@ -15,7 +15,13 @@ uses
   StudentModel in 'Modules\StudentModel.pas',
   AddStudentFormUnit in 'AddStudentFormUnit.pas' {AddStudentForm},
   PresenceFormUnit in 'PresenceFormUnit.pas' {PresenceForm},
-  CheckPresenceFormUnit in 'CheckPresenceFormUnit.pas' {Form1};
+  CheckPresenceFormUnit in 'CheckPresenceFormUnit.pas' {CheckPresenceForm},
+  LessonFormUnit in 'LessonFormUnit.pas' {LessonsForm},
+  AddLessonUnit in 'AddLessonUnit.pas' {AddLessonForm},
+  LessonModel in 'Modules\LessonModel.pas',
+  AddStudentToLessonUnit in 'AddStudentToLessonUnit.pas' {AddStudentToLessonForm},
+  PresenceModel in 'Modules\PresenceModel.pas',
+  PresenceLogUnit in 'PresenceLogUnit.pas' {PresenceLogForm};
 
 {$R *.res}
 
@@ -25,7 +31,5 @@ begin
   Application.CreateForm(TDBEngineModule, DBEngineModule);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TMainMenu, MainMenu);
-  Application.CreateForm(TPresenceForm, PresenceForm);
-  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.
