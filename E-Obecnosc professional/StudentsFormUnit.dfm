@@ -84,7 +84,7 @@ object StudentsForm: TStudentsForm
     end
   end
   object btnAdd: TButton
-    Left = 24
+    Left = 32
     Top = 16
     Width = 161
     Height = 49

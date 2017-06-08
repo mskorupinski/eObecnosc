@@ -39,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses MainUnit, DBEngineModules;
+uses MainUnit, DBEngineModules, StudentsFormUnit;
 
 procedure TAddStudentForm.btnAddClick(Sender: TObject);
 var
@@ -65,6 +65,7 @@ begin
     end;
 
     StudentController.AddStudent(FDQuery, Student);
+    StudentsFormUnit.StudentsForm.Refresh;
     Close;
 
   end;

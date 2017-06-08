@@ -33,7 +33,7 @@ type
   private
     StudentController: TStudentModel;
   public
-    { Public declarations }
+    procedure Refresh;
   end;
 
 var
@@ -44,6 +44,11 @@ implementation
 {$R *.dfm}
 
 uses MainUnit, DBEngineModules, AddStudentFormUnit, PresenceFormUnit;
+
+procedure TStudentsForm.Refresh;
+begin
+  StudentController.Search(FDQuery, '', '');
+end;
 
 procedure TStudentsForm.btnAddClick(Sender: TObject);
 begin

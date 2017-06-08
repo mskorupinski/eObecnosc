@@ -59,7 +59,7 @@ begin
    FDQuery1.OpenOrExecute;
 
 
-   FDQuery2.SQL.Text := 'SELECT ID, Data_rozpoczecia, Sala FROM Dziennik_zajec WHERE ID NOT IN (SELECT ID_Dziennika_Zajec FROM Obecnosci WHERE ID_Studenta = :id_studenta) AND ID_Zajec = :id_zajec';
+   FDQuery2.SQL.Text := 'SELECT ID, Data_rozpoczecia, Sala FROM Dziennik_zajec as d WHERE ID NOT IN (SELECT ID_Dziennika_Zajec FROM Obecnosci WHERE ID_Studenta = :id_studenta) AND ID_Zajec = :id_zajec AND ID_Zajec IN (SELECT ID_Zajec FROM Grupy WHERE ID_Studenta = :id_studenta)';
    FDQuery2.ParamByName('id_studenta').AsInteger := self.ID;
    FDQuery2.ParamByName('id_zajec').AsInteger := FDQuery.FieldByName('ID').AsInteger;
    FDQuery2.OpenOrExecute;
@@ -134,7 +134,7 @@ begin
 
   self.Caption := Student.Imie + ' ' + Student.Nazwisko + ' ' + Student.Indeks;
 
-  StudentController.GetLessons(FDQuery, self.ID);
+  StudentController.GetLessons(FDQuery, self.ID, MainForm.ID);
 end;
 
 end.
